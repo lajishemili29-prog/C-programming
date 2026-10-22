@@ -1,0 +1,78 @@
+#include <stdio.h>
+
+struct Contact
+{
+char name[50];
+char phone[20];
+char relationship[30];
+};
+
+int main()
+{
+struct Contact contacts[100];
+int choice, count = 0, i;
+
+while (1)
+{
+    printf("\n===== EMERGENCY CONTACT DIRECTORY =====\n");
+    printf("1. Add Contact\n");
+    printf("2. View All Contacts\n");
+    printf("3. Exit\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    if (choice == 1)
+    {
+        if (count >= 100)
+        {
+            printf("Contact directory is full!\n");
+            continue;
+        }
+
+        printf("Enter Name: ");
+        scanf(" %49[^\n]", contacts[count].name);
+
+        printf("Enter Phone Number: ");
+        scanf(" %19s", contacts[count].phone);
+
+        printf("Enter Relationship: ");
+        scanf(" %29[^\n]", contacts[count].relationship);
+
+        count++;
+
+        printf("Contact added successfully!\n");
+    }
+    else if (choice == 2)
+    {
+        if (count == 0)
+        {
+            printf("No contacts available.\n");
+        }
+        else
+        {
+            printf("\n--- Saved Emergency Contacts ---\n");
+
+            for (i = 0; i < count; i++)
+            {
+                printf("\nContact %d\n", i + 1);
+                printf("Name: %s\n", contacts[i].name);
+                printf("Phone: %s\n", contacts[i].phone);
+                printf("Relationship: %s\n",
+                       contacts[i].relationship);
+            }
+        }
+    }
+    else if (choice == 3)
+    {
+        printf("Thank you for using the directory!\n");
+        break;
+    }
+    else
+    {
+        printf("Invalid choice! Try again.\n");
+    }
+}
+
+return 0;
+
+}
